@@ -1,0 +1,36 @@
+//M-1
+//T.C=o(N2)
+class Solution {
+public:
+    int longestSubsequence(vector<int>& nums) {
+        int ans=1;
+        int n =nums.size();
+        
+        for(int i=0;i<n;i++){
+            int x=nums[i];
+            for(int j=i+1;j<n;j++){
+                x=x^nums[j];
+                if(x!=0) ans=max(ans,j-i+1);
+            }
+        }
+        return ans;
+    }
+};
+//M-2
+      //T.C=o(n)
+
+      class Solution {
+public:
+    int longestSubsequence(vector<int>& nums) {
+        int resultXOR=0;
+        int n = nums.size();
+        bool allzero=true;
+        for(int num:nums){
+            resultXOR^=num;
+            if(num!=0) allzero=false;
+        }
+        if(allzero==true) return 0;
+        if(resultXOR==0) return n-1;
+        else return n;
+    }
+};
